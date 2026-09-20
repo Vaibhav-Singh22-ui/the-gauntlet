@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800;900&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold-primary: #f59e0b;
+  --gold-bright: #fbbf24;
+  --gold-dark: #b45309;
+  --gold-deep: #78350f;
+  --stage-dark: #050608;
+  --stage-surface: #0e111a;
+  --stage-border: #22293f;
+  --stage-gold-glow: rgba(245, 158, 11, 0.45);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body {
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--stage-dark);
+  color: #f8fafc;
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  overflow: hidden;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+.font-cinzel {
+  font-family: 'Cinzel', serif;
+}
+
+.font-display {
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.01em;
+}
+
+/* 3D Gold Metallic Text */
+.gold-metallic-text {
+  background: linear-gradient(180deg, #fffbeb 0%, #fde68a 25%, #f59e0b 60%, #b45309 85%, #78350f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 8px rgba(245, 158, 11, 0.4));
+}
+
+.gold-bevel-badge {
+  background: linear-gradient(180deg, #1f1b13 0%, #0d0e14 100%);
+  border: 1px solid #d97706;
+  box-shadow: 0 0 25px rgba(245, 158, 11, 0.25), inset 0 1px 0 rgba(254, 240, 138, 0.4), inset 0 0 15px rgba(245, 158, 11, 0.15);
+}
+
+/* Beveled Hexagonal Cuts */
+.hexagon-clip {
+  clip-path: polygon(14px 0%, calc(100% - 14px) 0%, 100% 50%, calc(100% - 14px) 100%, 14px 100%, 0% 50%);
+}
+
+.chevron-button-clip {
+  clip-path: polygon(18px 0%, calc(100% - 18px) 0%, 100% 50%, calc(100% - 18px) 100%, 18px 100%, 0% 50%);
+}
+
+/* Studio Floor Warm Reflection Effect */
+.stage-floor-reflection {
+  background: radial-gradient(ellipse 60% 30% at 50% 90%, rgba(245, 158, 11, 0.18) 0%, rgba(180, 83, 9, 0.08) 40%, transparent 80%);
+}
+
+/* Studio Lighting Spotlights */
+.studio-spotlight-left {
+  background: radial-gradient(ellipse at 25% 15%, rgba(245, 158, 11, 0.15) 0%, rgba(5, 6, 8, 0) 65%);
+}
+
+.studio-spotlight-right {
+  background: radial-gradient(ellipse at 75% 20%, rgba(59, 130, 246, 0.1) 0%, rgba(5, 6, 8, 0) 65%);
+}
+
+/* Arcade Console Glass & Frame */
+.console-frame {
+  background: linear-gradient(165deg, rgba(26, 30, 48, 0.85) 0%, rgba(10, 12, 19, 0.95) 100%);
+  border: 1px solid rgba(80, 92, 130, 0.4);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), inset 0 1px 1px rgba(255, 255, 255, 0.15);
+}
+
+/* Glow Keyframes */
+@keyframes pulseDanger {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+    border-color: rgba(239, 68, 68, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.85);
+    border-color: rgba(239, 68, 68, 1);
+  }
+}
+
+.animate-danger-pulse {
+  animation: pulseDanger 0.8s infinite ease-in-out;
+}
+
+@keyframes pointerFlap {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-18deg); }
+  100% { transform: rotate(0deg); }
+}
+
+.animate-pointer-tick {
+  animation: pointerFlap 0.09s ease-in-out;
+}
