@@ -24,13 +24,23 @@ export default function NewQuestionPage() {
     level: 1,
     color: 'RED' as WheelColor,
     category: 'Aptitude',
-    difficulty: 'HARD' as QuestionDifficulty,
+    difficulty: 'VERY_VERY_EASY' as QuestionDifficulty,
     expected_solve_seconds: 45,
     verification_status: 'VERIFIED' as VerificationStatus,
     active: true,
     source_type: 'MANUAL_OPERATOR',
     source_reference: 'Operator stall creation',
   });
+
+  const handleLevelChange = (lvl: number) => {
+    let diff: QuestionDifficulty = form.difficulty;
+    if (lvl === 1) diff = 'VERY_VERY_EASY';
+    else if (lvl === 2) diff = 'VERY_EASY';
+    else if (lvl === 3) diff = 'EASY';
+    else if (diff === 'VERY_VERY_EASY' || diff === 'VERY_EASY' || diff === 'EASY') diff = 'HARD';
+
+    setForm({ ...form, level: lvl, difficulty: diff });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -92,7 +102,7 @@ export default function NewQuestionPage() {
               <label className="block text-[11px] uppercase font-bold text-slate-400 mb-1">Level (1-15)</label>
               <select
                 value={form.level}
-                onChange={(e) => setForm({ ...form, level: parseInt(e.target.value) })}
+                onChange={(e) => handleLevelChange(parseInt(e.target.value))}
                 className="w-full bg-[#161928] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
               >
                 {Array.from({ length: 15 }, (_, i) => i + 1).map((lvl) => (
@@ -194,9 +204,15 @@ export default function NewQuestionPage() {
                 onChange={(e) => setForm({ ...form, difficulty: e.target.value as QuestionDifficulty })}
                 className="w-full bg-[#161928] border border-slate-700 rounded-xl px-3 py-2 text-xs text-white"
               >
-                <option value="HARD">Hard</option>
-                <option value="MEDIUM">Medium</option>
-                {form.level <= 5 && <option value="EASY">Easy</option>}
+                {form.level === 1 && <option value="VERY_VERY_EASY">Very Very Easy (L1 only)</option>}
+                {form.level === 2 && <option value="VERY_EASY">Very Easy (L2 only)</option>}
+                {form.level === 3 && <option value="EASY">Easy (L3 only)</option>}
+                {form.level >= 4 && (
+                  <>
+                    <option value="HARD">Hard</option>
+                    <option value="MEDIUM">Medium</option>
+                  </>
+                )}
               </select>
             </div>
             <div>

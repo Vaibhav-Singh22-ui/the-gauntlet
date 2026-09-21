@@ -290,8 +290,8 @@ export default function GameKioskPage() {
           {/* Tournament Logo Emblem */}
           <div className="relative w-24 h-24 sm:w-32 sm:h-32 rounded-full overflow-hidden border-4 border-amber-400/80 shadow-[0_0_40px_rgba(245,158,11,0.5)] mb-3">
             <img
-              src="/the_gauntlet_logo.jpg"
-              alt="The Gauntlet Logo"
+              src="/fifty_millionaire_logo.jpg"
+              alt="50 Millionaire Logo"
               className="w-full h-full object-cover scale-105"
             />
           </div>
@@ -301,11 +301,11 @@ export default function GameKioskPage() {
           </div>
 
           <h1 className="text-5xl sm:text-6xl md:text-7xl font-black font-cinzel gold-metallic-text tracking-tight uppercase drop-shadow-[0_10px_35px_rgba(0,0,0,0.9)]">
-            THE GAUNTLET
+            50 MILLIONAIRE
           </h1>
 
           <p className="text-xs sm:text-sm text-amber-100/70 font-semibold tracking-wider max-w-lg mt-1 uppercase font-display">
-            15 Rapid Wheel Rounds • Risk For Higher Stakes • Or Cash Out & Walk Away
+            15 Rapid Wheel Rounds • Risk For Higher Scores • Bank Points & Secure Glory
           </p>
 
           <div className="mt-6 flex items-center gap-6 sm:gap-8 p-4 sm:p-5 rounded-2xl console-frame border border-amber-500/30">
@@ -320,10 +320,10 @@ export default function GameKioskPage() {
             <div className="w-[1px] h-8 bg-slate-700" />
             <div className="flex flex-col items-center">
               <span className="text-[9px] sm:text-[10px] uppercase font-black tracking-widest text-amber-400">
-                MAX PAYOUT
+                MAX SCORE
               </span>
               <span className="text-xl sm:text-2xl font-black text-amber-300 font-display gold-metallic-text mt-0.5">
-                ₹150
+                150 PTS
               </span>
             </div>
             <div className="w-[1px] h-8 bg-slate-700" />
@@ -343,7 +343,7 @@ export default function GameKioskPage() {
             className="mt-7 px-10 sm:px-14 py-4 rounded-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 hover:from-amber-400 hover:to-yellow-300 text-slate-950 font-display font-black text-sm sm:text-base tracking-[0.2em] uppercase shadow-[0_0_45px_rgba(245,158,11,0.5)] transform hover:scale-105 active:scale-95 transition-all flex items-center gap-3 cursor-pointer"
           >
             <Play className="w-5 h-5 fill-slate-950" />
-            <span>{isStartingGame ? 'INITIALIZING ARENA...' : 'ENTER THE GAUNTLET'}</span>
+            <span>{isStartingGame ? 'INITIALIZING ARENA...' : 'ENTER 50 MILLIONAIRE'}</span>
           </button>
         </div>
 
@@ -385,13 +385,13 @@ export default function GameKioskPage() {
               </div>
 
               <h2 className="text-3xl sm:text-4xl font-black font-cinzel text-white drop-shadow-md mb-2">
-                SECURED REWARD:{' '}
-                <span className="gold-metallic-text font-display">₹{session.current_reward}</span>
+                POINTS BANKED:{' '}
+                <span className="gold-metallic-text font-display">{session.current_reward} PTS</span>
               </h2>
 
               <p className="text-xs sm:text-sm text-slate-300 mb-6 max-w-md leading-relaxed">
-                You have <span className="text-emerald-400 font-bold">₹{session.current_reward}</span> in the bag.
-                You can take the money and leave now, or risk it all to push for <span className="text-amber-300 font-bold">Level {session.current_level + 1} (target ₹{(session.current_level + 1) * 10})</span>!
+                You have <span className="text-emerald-400 font-bold">{session.current_reward} PTS</span> secured.
+                You can bank your points and exit now, or risk it all to push for <span className="text-amber-300 font-bold">Level {session.current_level + 1} (target {(session.current_level + 1) * 10} PTS)</span>!
               </p>
 
               {/* TWO CHOICES: RISK OR LEAVE */}
@@ -414,7 +414,7 @@ export default function GameKioskPage() {
                   className="flex-1 w-full py-4 px-4 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-500 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-display font-black text-xs sm:text-sm tracking-wider uppercase shadow-[0_0_30px_rgba(16,185,129,0.5)] transform hover:scale-105 active:scale-95 transition-all cursor-pointer flex items-center justify-center gap-2"
                 >
                   <Banknote className="w-5 h-5 text-slate-950" />
-                  <span>{isEvaluating ? 'PROCESSING...' : `TAKE ₹${session.current_reward} & LEAVE`}</span>
+                  <span>{isEvaluating ? 'PROCESSING...' : `BANK ${session.current_reward} PTS & EXIT`}</span>
                 </button>
               </div>
             </div>

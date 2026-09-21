@@ -20,7 +20,7 @@ export default function OperatorNav() {
     <nav className="w-full bg-[#11131e] border-b border-[#24293e] px-6 py-3.5 flex items-center justify-between">
       <div className="flex items-center gap-6">
         <Link href="/operator" className="flex items-center gap-2 text-amber-400 font-display font-black text-lg">
-          <span>₹50</span>
+          <span>50 MILLIONAIRE</span>
           <span className="text-white text-sm font-semibold tracking-wider uppercase">OPERATOR PORTAL</span>
         </Link>
 

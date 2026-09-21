@@ -52,25 +52,25 @@ export default function VictoryModal({
         </div>
 
         <h2 className="text-3xl md:text-4xl font-black font-display tracking-tight text-amber-300 uppercase gold-text-glow mb-1">
-          {isCashOut ? 'CASHED OUT & SECURED!' : 'CHALLENGE CONQUERED!'}
+          {isCashOut ? 'POINTS BANKED & SECURED!' : '50 MILLIONAIRE CONQUERED!'}
         </h2>
 
         <p className="text-xs uppercase font-extrabold tracking-widest text-emerald-400 mb-6 flex items-center justify-center gap-1.5">
           <Award className="w-4 h-4" />
           {isCashOut
-            ? `Walked Away at Level ${levelReached} • Smart Tactical Exit`
-            : 'All 15 Levels Conquered — Grand Champion'}
+            ? `Banked at Level ${levelReached} • Tactical Exit with High Score`
+            : 'All 15 Levels Conquered — 50 Millionaire Champion'}
         </p>
 
         <div className="bg-[#19160f] border border-amber-500/50 rounded-2xl p-6 mb-7 gold-glow-box">
           <div className="text-xs uppercase font-bold text-slate-300 tracking-wider">
-            {isCashOut ? 'Confirmed Cash Payout' : 'Grand Champion Reward'}
+            {isCashOut ? 'Confirmed Final Score' : 'Grand Champion Score'}
           </div>
           <div className="text-5xl font-black text-amber-400 mt-2 font-display gold-text-glow">
-            ₹{reward}
+            {reward} PTS
           </div>
           <p className="text-[11px] text-amber-200/80 mt-2">
-            Collect your ₹{reward} cash payout directly from the stall operator!
+            Your final score of {reward} PTS is recorded with the arena operator!
           </p>
         </div>
 

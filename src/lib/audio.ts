@@ -1,5 +1,5 @@
 /**
- * Audio Engine for ₹50 Challenge
+ * Audio Engine for 50 Millionaire
  * Utilizes exclusively user-provided audio assets:
  *   - /audio/wheel-spin.mp3
  *   - /audio/lose.mp3
@@ -24,7 +24,10 @@ class AudioManager {
 
   constructor() {
     if (typeof window !== 'undefined') {
-      const savedMute = localStorage.getItem('the_gauntlet_muted') || localStorage.getItem('fifty_challenge_muted');
+      const savedMute =
+        localStorage.getItem('fifty_millionaire_muted') ||
+        localStorage.getItem('the_gauntlet_muted') ||
+        localStorage.getItem('fifty_challenge_muted');
       this.isMuted = savedMute === 'true';
     }
   }
@@ -58,6 +61,7 @@ class AudioManager {
   public setMuted(muted: boolean) {
     this.isMuted = muted;
     if (typeof window !== 'undefined') {
+      localStorage.setItem('fifty_millionaire_muted', String(muted));
       localStorage.setItem('the_gauntlet_muted', String(muted));
     }
     if (muted) {

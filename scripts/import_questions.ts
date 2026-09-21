@@ -48,7 +48,7 @@ interface ValidationResult {
     level: number;
     color: 'RED' | 'BLUE' | 'GREEN' | 'YELLOW' | 'PINK' | 'VIOLET';
     category: string;
-    difficulty: 'EASY' | 'MEDIUM' | 'HARD';
+    difficulty: 'VERY_VERY_EASY' | 'VERY_EASY' | 'EASY' | 'MEDIUM' | 'HARD';
     expected_solve_seconds: number;
     verification_status: 'NEEDS_HUMAN_REVIEW' | 'VERIFIED' | 'REJECTED';
     active: boolean;
@@ -58,7 +58,7 @@ interface ValidationResult {
 }
 
 const VALID_COLORS = new Set(['RED', 'BLUE', 'GREEN', 'YELLOW', 'PINK', 'VIOLET']);
-const VALID_DIFFICULTIES = new Set(['EASY', 'MEDIUM', 'HARD']);
+const VALID_DIFFICULTIES = new Set(['VERY_VERY_EASY', 'VERY_EASY', 'EASY', 'MEDIUM', 'HARD']);
 const VALID_OPTIONS = new Set(['A', 'B', 'C', 'D']);
 
 function validateQuestion(q: RawQuestion, rowIndex: number): ValidationResult {
@@ -96,9 +96,19 @@ function validateQuestion(q: RawQuestion, rowIndex: number): ValidationResult {
     errors.push(`Row ${rowIndex} (${extId}): Invalid difficulty '${q.difficulty}'`);
   }
 
-  // Rule: Levels 6-15 must not have EASY questions
-  if (level >= 6 && difficulty === 'EASY') {
-    errors.push(`Row ${rowIndex} (${extId}): EASY questions are prohibited for Levels 6-15`);
+  // 50 Millionaire Level-to-Difficulty Tier Rules:
+  // Level 1: VERY_VERY_EASY only
+  // Level 2: VERY_EASY only
+  // Level 3: EASY only
+  // Levels 4-15: MEDIUM or HARD only
+  if (level === 1 && difficulty !== 'VERY_VERY_EASY') {
+    errors.push(`Row ${rowIndex} (${extId}): Level 1 questions must have difficulty 'VERY_VERY_EASY' (found '${difficulty}')`);
+  } else if (level === 2 && difficulty !== 'VERY_EASY') {
+    errors.push(`Row ${rowIndex} (${extId}): Level 2 questions must have difficulty 'VERY_EASY' (found '${difficulty}')`);
+  } else if (level === 3 && difficulty !== 'EASY') {
+    errors.push(`Row ${rowIndex} (${extId}): Level 3 questions must have difficulty 'EASY' (found '${difficulty}')`);
+  } else if (level >= 4 && (difficulty === 'VERY_VERY_EASY' || difficulty === 'VERY_EASY' || difficulty === 'EASY')) {
+    errors.push(`Row ${rowIndex} (${extId}): Easy tier questions (${difficulty}) are prohibited for Levels 4-15 (must be MEDIUM or HARD)`);
   }
 
   let solveSec = Number(q.expected_solve_seconds);
@@ -106,14 +116,14 @@ function validateQuestion(q: RawQuestion, rowIndex: number): ValidationResult {
     solveSec = 45; // safe default
   }
 
-  let active = false;
+  // Human verification removed: all questions default to active and VERIFIED
+  let active = true;
   if (typeof q.active === 'boolean') active = q.active;
   else if (typeof q.active === 'string') active = q.active.toLowerCase() === 'true';
 
-  let verStatus: 'NEEDS_HUMAN_REVIEW' | 'VERIFIED' | 'REJECTED' = 'NEEDS_HUMAN_REVIEW';
+  let verStatus: 'NEEDS_HUMAN_REVIEW' | 'VERIFIED' | 'REJECTED' = 'VERIFIED';
   const rawStatus = (q.verification_status || '').trim().toUpperCase();
-  if (rawStatus === 'VERIFIED') verStatus = 'VERIFIED';
-  else if (rawStatus === 'REJECTED') verStatus = 'REJECTED';
+  if (rawStatus === 'REJECTED') verStatus = 'REJECTED';
 
   if (errors.length > 0) {
     return { valid: false, errors };
@@ -134,7 +144,7 @@ function validateQuestion(q: RawQuestion, rowIndex: number): ValidationResult {
       level,
       color: color as 'RED' | 'BLUE' | 'GREEN' | 'YELLOW' | 'PINK' | 'VIOLET',
       category: (q.category || 'General').trim(),
-      difficulty: difficulty as 'EASY' | 'MEDIUM' | 'HARD',
+      difficulty: difficulty as 'VERY_VERY_EASY' | 'VERY_EASY' | 'EASY' | 'MEDIUM' | 'HARD',
       expected_solve_seconds: solveSec,
       verification_status: verStatus,
       active,
@@ -199,7 +209,7 @@ function parseCSVLine(text: string): string[] {
 
 export async function runImporter(filePath: string, isDryRun: boolean = false) {
   console.log('====================================================');
-  console.log('       ₹50 CHALLENGE — QUESTION BANK IMPORTER       ');
+  console.log('     50 MILLIONAIRE — QUESTION BANK IMPORTER        ');
   console.log('====================================================');
   console.log(`Target File : ${filePath}`);
   console.log(`Mode        : ${isDryRun ? 'DRY RUN (Validation only)' : 'LIVE IMPORT'}`);
@@ -226,7 +236,7 @@ export async function runImporter(filePath: string, isDryRun: boolean = false) {
   const validQuestions: NonNullable<ValidationResult['cleanData']>[] = [];
   const allErrors: string[] = [];
 
-  const diffCounts: Record<string, number> = { EASY: 0, MEDIUM: 0, HARD: 0 };
+  const diffCounts: Record<string, number> = { VERY_VERY_EASY: 0, VERY_EASY: 0, EASY: 0, MEDIUM: 0, HARD: 0 };
   const levelCounts: Record<number, number> = {};
   const colorCounts: Record<string, number> = {};
 

@@ -36,18 +36,18 @@ export default function GameHeader({
 
   return (
     <header className="relative w-full px-6 py-3 flex items-center justify-between z-30 select-none">
-      {/* 1. LEFT: THE GAUNTLET LUXURY EMBLEM BRAND */}
+      {/* 1. LEFT: 50 MILLIONAIRE LUXURY EMBLEM BRAND */}
       <div className="flex items-center gap-3">
         <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden border-2 border-amber-400/80 shadow-[0_0_15px_rgba(245,158,11,0.4)] flex-shrink-0">
           <img
-            src="/the_gauntlet_logo.jpg"
-            alt="The Gauntlet Logo"
+            src="/fifty_millionaire_logo.jpg"
+            alt="50 Millionaire Logo"
             className="w-full h-full object-cover scale-110"
           />
         </div>
         <div className="flex flex-col">
           <span className="text-xl sm:text-2xl font-black font-cinzel gold-metallic-text tracking-wider leading-tight">
-            THE GAUNTLET
+            50 MILLIONAIRE
           </span>
           <span className="text-[8px] sm:text-[9px] font-black tracking-[0.3em] uppercase text-amber-300/80 drop-shadow-sm -mt-0.5">
             HIGH STAKES ARENA
@@ -65,11 +65,11 @@ export default function GameHeader({
           <div className="absolute -bottom-[1px] -right-[1px] w-3 h-3 border-b-2 border-r-2 border-amber-300 rounded-br-sm pointer-events-none" />
 
           <span className="text-[9px] sm:text-[10px] uppercase font-black tracking-[0.25em] text-amber-300/80">
-            CURRENT REWARD
+            CURRENT SCORE
           </span>
 
           <span className="text-2xl sm:text-3xl md:text-4xl font-black font-display text-amber-300 gold-metallic-text leading-tight mt-0.5 tracking-tight transition-all duration-300">
-            ₹ {currentReward}
+            {currentReward} PTS
           </span>
         </div>
       </div>

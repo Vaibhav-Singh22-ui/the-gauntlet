@@ -95,7 +95,7 @@ export default function OperatorSessionsPage() {
                         Level {s.final_level || s.current_level}
                       </td>
                       <td className="p-3.5 font-bold font-display text-amber-400">
-                        ₹{s.final_reward || s.current_reward}
+                        {s.final_reward || s.current_reward} PTS
                       </td>
                       <td className="p-3.5">
                         <span

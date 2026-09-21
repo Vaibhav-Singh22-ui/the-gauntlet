@@ -237,9 +237,11 @@ export default function OperatorQuestionsPage() {
             className="bg-[#161928] border border-slate-700/60 rounded-xl px-3 py-2 text-xs text-slate-200 focus:outline-none focus:border-amber-400 cursor-pointer"
           >
             <option value="ALL">All Difficulties</option>
-            <option value="EASY">Easy</option>
-            <option value="MEDIUM">Medium</option>
-            <option value="HARD">Hard</option>
+            <option value="VERY_VERY_EASY">Very Very Easy (L1)</option>
+            <option value="VERY_EASY">Very Easy (L2)</option>
+            <option value="EASY">Easy (L3)</option>
+            <option value="MEDIUM">Medium (L4-15)</option>
+            <option value="HARD">Hard (L4-15)</option>
           </select>
 
           {/* Verification Status Filter */}
@@ -356,10 +358,14 @@ export default function OperatorQuestionsPage() {
                                 ? 'bg-red-950/70 text-red-300 border border-red-800'
                                 : q.difficulty === 'MEDIUM'
                                 ? 'bg-amber-950/70 text-amber-300 border border-amber-800'
+                                : q.difficulty === 'VERY_VERY_EASY'
+                                ? 'bg-cyan-950/70 text-cyan-300 border border-cyan-800'
+                                : q.difficulty === 'VERY_EASY'
+                                ? 'bg-sky-950/70 text-sky-300 border border-sky-800'
                                 : 'bg-emerald-950/70 text-emerald-300 border border-emerald-800'
                             }`}
                           >
-                            {q.difficulty}
+                            {q.difficulty.replace(/_/g, ' ')}
                           </span>
                         </td>
                         <td className="p-3.5">

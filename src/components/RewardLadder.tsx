@@ -28,10 +28,10 @@ export default function RewardLadder({
               High Stakes Decision
             </span>
             <span className="text-xl md:text-2xl font-black text-amber-300 font-display gold-text-glow">
-              ₹{currentReward} AT RISK
+              {currentReward} PTS AT RISK
             </span>
             <span className="text-[11px] text-slate-400">
-              Next question wrong = ₹0. Clear Level {currentLevel + 1} for ₹{(currentLevel + 1) * 10}!
+              Next question wrong = 0 PTS. Clear Level {currentLevel + 1} for {(currentLevel + 1) * 10} PTS!
             </span>
           </div>
 
@@ -70,7 +70,7 @@ export default function RewardLadder({
                 L{item.level}
               </span>
               <span className="text-xs font-bold font-display">
-                ₹{item.reward}
+                {item.reward} PTS
               </span>
             </div>
           );

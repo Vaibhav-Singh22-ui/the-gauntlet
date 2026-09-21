@@ -11,7 +11,7 @@ export type GameStatus =
   | 'GAME_OVER'
   | 'COMPLETED';
 
-export type QuestionDifficulty = 'EASY' | 'MEDIUM' | 'HARD';
+export type QuestionDifficulty = 'VERY_VERY_EASY' | 'VERY_EASY' | 'EASY' | 'MEDIUM' | 'HARD';
 export type VerificationStatus = 'NEEDS_HUMAN_REVIEW' | 'VERIFIED' | 'REJECTED';
 export type AnswerOption = 'A' | 'B' | 'C' | 'D';
 

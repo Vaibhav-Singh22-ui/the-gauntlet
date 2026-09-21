@@ -223,7 +223,7 @@ export default function ArcadeConsole({
               <span>DECISION TIME</span>
             </div>
             <span className="text-[11px] text-slate-300">
-              Secured: <strong className="text-amber-400 font-bold">₹{currentReward}</strong>. Risk for more or cash out now!
+              Secured: <strong className="text-amber-400 font-bold">{currentReward} PTS</strong>. Risk for more or bank points now!
             </span>
 
             {/* BUTTON 1: RISK IT */}
@@ -257,7 +257,7 @@ export default function ArcadeConsole({
               disabled={loadingRisk || loadingCashOut}
               className="w-full py-2.5 px-3 rounded-xl bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-500 hover:from-emerald-400 hover:to-teal-300 text-slate-950 font-display font-black text-xs uppercase tracking-wider shadow-[0_0_15px_rgba(16,185,129,0.4)] transform hover:scale-102 active:scale-98 transition-all cursor-pointer"
             >
-              {loadingCashOut ? 'CASHING OUT...' : `💰 TAKE ₹${currentReward} & LEAVE`}
+              {loadingCashOut ? 'BANKING POINTS...' : `🏆 BANK ${currentReward} PTS & EXIT`}
             </button>
           </div>
         ) : (
@@ -266,11 +266,11 @@ export default function ArcadeConsole({
               <CheckCircle className="w-4 h-4" />
               <span className="text-xs font-black uppercase tracking-wider">RISK IT.</span>
             </div>
-            <span className="text-[11px] text-slate-400 font-medium">Your reward is</span>
+            <span className="text-[11px] text-slate-400 font-medium">Your score is</span>
             <div className="flex items-center gap-3 w-full justify-center my-1.5">
               <div className="w-8 h-[1px] bg-gradient-to-r from-transparent to-amber-500/60" />
               <span className="text-2xl font-black font-display text-amber-300 gold-metallic-text">
-                ₹{currentReward}
+                {currentReward} PTS
               </span>
               <div className="w-8 h-[1px] bg-gradient-to-l from-transparent to-amber-500/60" />
             </div>
@@ -304,7 +304,7 @@ export default function ArcadeConsole({
                     ? 'bg-amber-500/80'
                     : 'bg-[#1e2336] border border-slate-700'
                 }`}
-                title={`Level ${item.level}: ₹${item.reward}`}
+                title={`Level ${item.level}: ${item.reward} PTS`}
               />
             );
           })}

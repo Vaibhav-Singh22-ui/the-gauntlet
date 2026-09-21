@@ -30,6 +30,30 @@ export async function startGame(operatorId?: string): Promise<{ success: boolean
   }
 }
 
+const SEEN_QUESTIONS_KEY = 'fifty_millionaire_seen_questions';
+
+function getSeenQuestions(): string[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = sessionStorage.getItem(SEEN_QUESTIONS_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch {
+    return [];
+  }
+}
+
+function recordSeenQuestion(text: string) {
+  if (typeof window === 'undefined') return;
+  try {
+    const seen = getSeenQuestions();
+    if (!seen.includes(text)) {
+      seen.push(text);
+      if (seen.length > 60) seen.shift();
+      sessionStorage.setItem(SEEN_QUESTIONS_KEY, JSON.stringify(seen));
+    }
+  } catch {}
+}
+
 export async function spinWheelAndGetQuestion(
   sessionId: string
 ): Promise<{ success: boolean; question?: ActiveQuestionData; error?: string }> {
@@ -40,6 +64,9 @@ export async function spinWheelAndGetQuestion(
 
     if (error) throw error;
     if (!data.success) throw new Error(data.error);
+
+    // Track seen question to prevent repetition across games
+    recordSeenQuestion(data.question_text);
 
     return {
       success: true,

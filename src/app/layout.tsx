@@ -2,8 +2,8 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'THE GAUNTLET — High Stakes Arena',
-  description: 'High-pressure 15-level arcade game-show arena. Survive the wheel, risk for greater glory, or cash out and walk away.',
+  title: '50 MILLIONAIRE — High Stakes Arena',
+  description: '50 Millionaire: High-pressure 15-level arcade game-show arena. Spin the color wheel, solve the aptitude challenge, and rise from 10 to 150 Points!',
 };
 
 export default function RootLayout({

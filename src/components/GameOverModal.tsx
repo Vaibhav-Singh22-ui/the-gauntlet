@@ -45,8 +45,8 @@ export default function GameOverModal({
             Option {correctOption}
           </div>
           <div className="mt-3 pt-3 border-t border-red-950 flex items-center justify-between text-xs">
-            <span className="text-slate-400">Final Reward:</span>
-            <span className="text-base font-black text-red-400 font-display">₹0</span>
+            <span className="text-slate-400">Final Score:</span>
+            <span className="text-base font-black text-red-400 font-display">0 PTS</span>
           </div>
         </div>
 

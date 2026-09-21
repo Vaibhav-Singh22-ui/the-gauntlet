@@ -94,17 +94,17 @@ export default function OperatorOverviewPage() {
             </div>
           </div>
 
-          {/* Card 3: Rewards Paid Out */}
+          {/* Card 3: Points Disbursed */}
           <div className="bg-[#11131e] border border-[#22273d] rounded-2xl p-5 shadow-lg">
             <div className="flex items-center justify-between text-slate-400 mb-2">
-              <span className="text-xs uppercase font-bold tracking-wider">Rewards Disbursed</span>
+              <span className="text-xs uppercase font-bold tracking-wider">Points Disbursed</span>
               <Trophy className="w-4 h-4 text-amber-400" />
             </div>
             <div className="text-3xl font-black font-display text-amber-400">
-              ₹{loading ? '...' : stats?.total_rewards_paid || 0}
+              {loading ? '...' : stats?.total_rewards_paid || 0} PTS
             </div>
             <div className="text-[11px] text-slate-500 mt-2">
-              Net Stall Profit: <span className={netBalance >= 0 ? 'text-emerald-400 font-bold' : 'text-red-400 font-bold'}>₹{netBalance}</span>
+              Total score points banked by contestants
             </div>
           </div>
 
