@@ -30,27 +30,37 @@ export async function startGame(operatorId?: string): Promise<{ success: boolean
   }
 }
 
-const SEEN_QUESTIONS_KEY = 'fifty_millionaire_seen_questions';
+const SEEN_QUESTIONS_KEY = 'fifty_millionaire_seen_questions_v2';
 
-function getSeenQuestions(): string[] {
+export function getSeenQuestions(): string[] {
   if (typeof window === 'undefined') return [];
   try {
-    const raw = sessionStorage.getItem(SEEN_QUESTIONS_KEY);
+    const raw = localStorage.getItem(SEEN_QUESTIONS_KEY) || sessionStorage.getItem(SEEN_QUESTIONS_KEY);
     return raw ? JSON.parse(raw) : [];
   } catch {
     return [];
   }
 }
 
-function recordSeenQuestion(text: string) {
-  if (typeof window === 'undefined') return;
+export function recordSeenQuestion(text: string) {
+  if (typeof window === 'undefined' || !text) return;
   try {
     const seen = getSeenQuestions();
-    if (!seen.includes(text)) {
-      seen.push(text);
-      if (seen.length > 60) seen.shift();
+    const norm = text.trim().toLowerCase();
+    if (!seen.includes(norm)) {
+      seen.push(norm);
+      if (seen.length > 150) seen.shift();
+      localStorage.setItem(SEEN_QUESTIONS_KEY, JSON.stringify(seen));
       sessionStorage.setItem(SEEN_QUESTIONS_KEY, JSON.stringify(seen));
     }
+  } catch {}
+}
+
+export function clearSeenQuestionsHistory() {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.removeItem(SEEN_QUESTIONS_KEY);
+    sessionStorage.removeItem(SEEN_QUESTIONS_KEY);
   } catch {}
 }
 

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Volume2, VolumeX, Settings, Shield } from 'lucide-react';
+import { Volume2, VolumeX, Settings, Shield, Zap } from 'lucide-react';
 import { audio } from '@/lib/audio';
 import Link from 'next/link';
 
@@ -89,6 +89,16 @@ export default function GameHeader({
         >
           {muted ? <VolumeX className="w-4 h-4" /> : <Volume2 className="w-4 h-4" />}
         </button>
+
+        {/* Aptitude Games Link */}
+        <Link
+          href="/aptitude"
+          className="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-blue-500/10 hover:bg-blue-500/25 border border-blue-500/50 text-blue-300 text-xs font-bold uppercase tracking-wider transition-all shadow-md cursor-pointer"
+          title="Aptitude Games Arcade"
+        >
+          <Zap className="w-3.5 h-3.5 text-blue-400" />
+          <span className="hidden sm:inline">Aptitude</span>
+        </Link>
 
         {/* Operator Portal Link / Settings */}
         <Link
